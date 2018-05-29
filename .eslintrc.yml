@@ -1,0 +1,22 @@
+---
+plugins:
+  - jest
+  - babel
+
+extends:
+  - 'airbnb-base'
+  - 'plugin:jest/recommended'
+  - 'prettier'
+  - 'plugin:react/recommended'
+
+parser: babel-eslint
+
+env:
+  browser: true
+  node: true
+  jest: true
+
+rules:
+  import/no-unresolved: 0
+  import/extensions: 0
+  react/prop-types: 0
