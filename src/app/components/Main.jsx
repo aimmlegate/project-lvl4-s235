@@ -1,20 +1,20 @@
 import React from "react";
-import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
+import { Container, Row, Col } from "reactstrap";
+import Chat from "./Chat";
+import ChannelsContainer from "../containers/ChannelsContainer";
+import InputMessageContainer from "../containers/InputMessageContainer";
 
-const Main = (props) => {
-  const { channels } = props.data;
-  return(
+const Main = props => {
+  return (
     <Container>
       <Row>
         <Col xs="3">
-          <ListGroup>
-            {channels.map(el => <ListGroupItem key={el.id}>{el.name}</ListGroupItem>)}
-          </ListGroup>
+          <ChannelsContainer />
         </Col>
-        <Col xs="auto">
-          chat will be here
+        <Col xs="8">
+          <Chat />
+          <InputMessageContainer />
         </Col>
-
       </Row>
     </Container>
   );

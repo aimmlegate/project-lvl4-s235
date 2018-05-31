@@ -1,3 +1,7 @@
 .fade.in {
   opacity: 1;
 }
+
+.messageInput {
+  resize: none;
+}
