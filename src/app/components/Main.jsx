@@ -3,6 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import Chat from "./Chat";
 import ChannelsContainer from "../containers/ChannelsContainer";
 import InputMessageContainer from "../containers/InputMessageContainer";
+import ChatContainer from "../containers/ChatContainer";
 
 const Main = props => {
   return (
@@ -12,7 +13,7 @@ const Main = props => {
           <ChannelsContainer />
         </Col>
         <Col xs="8">
-          <Chat />
+          <ChatContainer />
           <InputMessageContainer />
         </Col>
       </Row>

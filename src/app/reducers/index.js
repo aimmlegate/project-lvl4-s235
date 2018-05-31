@@ -23,7 +23,7 @@ const channels = handleActions(
 
 const messages = handleActions(
   {
-    [actions.addMessage](
+    [actions.addMessageAll](
       state,
       {
         payload: payloadedMessages
@@ -32,6 +32,15 @@ const messages = handleActions(
       const formatedMessages = payloadedMessages.map((message) => ({ [message.id]: message }));
       const unionNewMessages = Object.assign({}, ...formatedMessages);
       return { ...state, ...unionNewMessages };
+    },
+    [actions.addMessage](
+      state,
+      {
+        payload: payloadedMessage
+      }
+    ) {
+      const { id } = payloadedMessage;
+      return { ...state, [id]: payloadedMessage };
     }
   },
   defaultState

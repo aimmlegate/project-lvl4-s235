@@ -8,7 +8,7 @@ import { Field } from 'redux-form';
 class InputMessage extends React.Component {
   sendMessage = (values) => {
     console.log(values);
-    //this.props.addMessage(values);
+    this.props.addMessage(values);
     this.props.reset();
   }
 
@@ -18,7 +18,7 @@ class InputMessage extends React.Component {
         <FormGroup>
           <Row>
             <Col xs="8">
-              <Field name="message" component={Input} className='messageInput' type="textarea" placeholder='Message...'/>
+              <Field name="message" component='input' className='messageInput' type="textarea" placeholder='Message...'/>
             </Col>
             <Col xs="3">
               <Button type="submit">Отправить</Button>
