@@ -60,9 +60,24 @@ const userName = handleActions(
   defaultState
 );
 
+const clientId = handleActions(
+  {
+    [actions.setClientId](
+      state,
+      {
+        payload: payloadedId
+      }
+    ) {
+      return payloadedId;
+    }
+  },
+  defaultState
+);
+
 export default combineReducers({
   form: formReducer,
   channels,
   messages,
   userName,
+  clientId
 });

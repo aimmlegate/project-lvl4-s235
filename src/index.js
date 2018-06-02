@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/application.css';
-import './app/index.jsx';
+import '../app/index.jsx';
 
 // import faker from 'faker';
 // import gon from 'gon';

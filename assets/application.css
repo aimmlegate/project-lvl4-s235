@@ -15,4 +15,26 @@
 .chat-container {
   flex-grow: 1;
   overflow-y: scroll;
+  margin-bottom: 10px;
+  background: aliceblue;
+  padding: 10px
+}
+
+.card {
+  margin-bottom: 10px;
+}
+
+.card-self {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-color: #5faef4;
+}
+
+.card-self .card-title {
+  text-align: right;
+}
+
+.card-self .card-text {
+  text-align: right;
 }
