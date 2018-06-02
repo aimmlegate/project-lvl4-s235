@@ -5,3 +5,14 @@
 .messageInput {
   resize: none;
 }
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 56px);
+}
+
+.chat-container {
+  flex-grow: 1;
+  overflow-y: scroll;
+}

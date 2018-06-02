@@ -17,6 +17,6 @@ env:
   jest: true
 
 rules:
-  import/no-unresolved: 0
-  import/extensions: 0
-  react/prop-types: 0
+  import/no-unresolved: true
+  import/extensions: true
+  react/prop-types: true

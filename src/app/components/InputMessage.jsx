@@ -1,27 +1,42 @@
 /* eslint-disable */
-import { reduxForm } from 'redux-form';
+import { reduxForm } from "redux-form";
 import React from "react";
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import { Row, Col } from 'reactstrap';
-import { Field } from 'redux-form';
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+  InputGroupAddon,
+  InputGroup
+} from "reactstrap";
+import { Row, Col } from "reactstrap";
+import { Field } from "redux-form";
 
 class InputMessage extends React.Component {
-  sendMessage = (values) => {
-    console.log(values);
-    this.props.addMessage(values);
+  sendMessage = values => {
+    const { userName } = this.props;
+    this.props.sendMessage(1, values, userName);
     this.props.reset();
-  }
+  };
 
   render() {
-    return(
-      <Form onSubmit={this.props.handleSubmit(this.sendMessage)}>
+    return (
+      <Form onSubmit={this.props.handleSubmit(this.sendMessage)} className='chat-form'>
         <FormGroup>
           <Row>
-            <Col xs="8">
-              <Field name="message" component='input' className='messageInput' type="textarea" placeholder='Message...'/>
-            </Col>
-            <Col xs="3">
-              <Button type="submit">Отправить</Button>
+            <Col xs="12">
+            <InputGroup>
+                <Input
+                  name="message"
+                  tag={Field}
+                  component="input"
+                  className="messageInput"
+                  type="text"
+                  placeholder="Message..."
+                />
+                <InputGroupAddon addonType="append"><Button color="secondary" type='submit'>Send</Button></InputGroupAddon>
+              </InputGroup>
             </Col>
           </Row>
         </FormGroup>
@@ -31,5 +46,5 @@ class InputMessage extends React.Component {
 }
 
 export default reduxForm({
-  form: 'inputMessage',
+  form: "inputMessage"
 })(InputMessage);

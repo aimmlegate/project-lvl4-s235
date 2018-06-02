@@ -9,10 +9,7 @@ const Main = props => {
   return (
     <Container>
       <Row>
-        <Col xs="3">
-          <ChannelsContainer />
-        </Col>
-        <Col xs="8">
+        <Col xs="12" className='chat-window'>
           <ChatContainer />
           <InputMessageContainer />
         </Col>
