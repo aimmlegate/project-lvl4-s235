@@ -35,9 +35,10 @@ const messages = handleActions(
       return [ ...RemoveLocalMessage ];
     },
     [actions.errorSendMessage](state, { payload: localMsgId }) {
-      const message = state.filter((msg) => (msg.localId === localMsgId));
+      const [message] = state.filter((msg) => (msg.localId === localMsgId));
+      const RemoveMessage = state.filter((msg) => !(msg.localId === localMsgId));
       const messageWithStatus = { ...message, status: "error" };
-      return [ ...state, messageWithStatus ];
+      return [ ...RemoveMessage, messageWithStatus ];
     }
   },
   []
