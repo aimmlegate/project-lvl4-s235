@@ -8,7 +8,8 @@ import {
   Input,
   Button,
   InputGroupAddon,
-  InputGroup
+  InputGroup,
+  InputGroupText
 } from "reactstrap";
 import { Row, Col } from "reactstrap";
 import { Field } from "redux-form";
@@ -23,6 +24,7 @@ class InputMessage extends React.Component {
   };
 
   render() {
+    const { userName } = this.props;
     return (
       <Form
         onSubmit={this.props.handleSubmit(this.sendMessage)}
@@ -32,6 +34,9 @@ class InputMessage extends React.Component {
           <Row>
             <Col xs="12">
               <InputGroup>
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>{userName}</InputGroupText>
+                </InputGroupAddon>
                 <Input
                   name="message"
                   tag={Field}
