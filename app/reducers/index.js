@@ -1,7 +1,6 @@
 import { reducer as formReducer } from "redux-form";
 import { handleActions } from "redux-actions";
 import { combineReducers } from "redux";
-import { omit } from "lodash";
 import * as actions from "../actions";
 
 const defaultState = {};
@@ -22,32 +21,26 @@ const channels = handleActions(
 const messages = handleActions(
   {
     [actions.addMessageAll](state, { payload: payloadedMessages }) {
-      const formatedMessages = payloadedMessages.map(message => ({
-        [message.id]: message
-      }));
-      const unionNewMessages = Object.assign({}, ...formatedMessages);
-      return { ...state, ...unionNewMessages };
+      return [ ...state, ...payloadedMessages ];
     },
     [actions.addMessage](state, { payload: payloadedMessage }) {
-      const { id } = payloadedMessage;
-      return { ...state, [id]: payloadedMessage };
+      return [ ...state, payloadedMessage ];
     },
     [actions.preRenderMessage](state, { payload: payloadedMessage }) {
-      const { localId } = payloadedMessage;
       const messageWithStatus = { ...payloadedMessage, status: "pending" };
-      return { ...state, [localId]: messageWithStatus };
+      return [ ...state, messageWithStatus ];
     },
     [actions.completeSendMessage](state, { payload: localMsgId }) {
-      const RemoveLocalMessage = omit(state, localMsgId);
-      return { ...RemoveLocalMessage };
+      const RemoveLocalMessage = state.filter((msg) => !(msg.localId === localMsgId));
+      return [ ...RemoveLocalMessage ];
     },
     [actions.errorSendMessage](state, { payload: localMsgId }) {
-      const message = state[localMsgId];
+      const message = state.filter((msg) => (msg.localId === localMsgId));
       const messageWithStatus = { ...message, status: "error" };
-      return { ...state, [localMsgId]: messageWithStatus };
+      return [ ...state, messageWithStatus ];
     }
   },
-  defaultState
+  []
 );
 
 const userName = handleActions(

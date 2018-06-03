@@ -19,7 +19,6 @@ export default class Chat extends React.Component {
 
   render() {
     const { messages, clientId } = this.props;
-    const messagesKeys = Object.keys(messages);
     return (
       <div
         ref={el => {
@@ -27,13 +26,18 @@ export default class Chat extends React.Component {
         }}
         className="chat-container"
       >
-        {messagesKeys.map(msgid => {
-          const { author, body, clientId: msgClientId, status } = messages[
-            msgid
-          ];
+        {messages.map(msg => {
+          const {
+            author,
+            body,
+            clientId: msgClientId,
+            status,
+            id,
+            localId
+          } = msg;
           return (
             <Message
-              key={msgid}
+              key={id || localId}
               author={author}
               body={body}
               self={clientId === msgClientId}

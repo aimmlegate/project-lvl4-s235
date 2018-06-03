@@ -16,10 +16,32 @@
   flex-grow: 1;
   overflow-y: scroll;
   margin-bottom: 10px;
-  background: aliceblue;
-  padding: 10px
+  background: #edf5fc;
+  padding: 10px;
+  border-radius: .25rem;
+  border: 1px solid #dcebf8;
 }
 
+.chat-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.chat-container::-webkit-scrollbar {
+  background-color: #dcebf8;
+}
+
+.chat-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background-color: #5faef4
+}
+    
+.chat-container::-webkit-scrollbar-track {
+  background: #dcebf8;
+}
+    
 .card-body {
   padding: .7rem;
 }
@@ -34,6 +56,10 @@
 
 .card {
   margin-bottom: 10px;
+}
+
+.card:last-child {
+  margin-bottom: 0;
 }
 
 .card-self {

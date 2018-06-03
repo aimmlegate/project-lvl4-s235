@@ -16,8 +16,10 @@ import { Field } from "redux-form";
 class InputMessage extends React.Component {
   sendMessage = values => {
     const { userName, clientId } = this.props;
-    this.props.sendMessage(1, values, userName, clientId);
-    this.props.reset();
+    if (values.message) {
+      this.props.sendMessage(1, values, userName, clientId);
+      this.props.reset();
+    }
   };
 
   render() {
