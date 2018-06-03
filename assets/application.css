@@ -20,6 +20,18 @@
   padding: 10px
 }
 
+.card-body {
+  padding: .7rem;
+}
+
+.card-pending {
+  opacity: 0.5;
+}
+
+.card-err {
+  border-color: red!important;
+}
+
 .card {
   margin-bottom: 10px;
 }

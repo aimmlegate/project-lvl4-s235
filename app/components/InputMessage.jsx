@@ -22,11 +22,14 @@ class InputMessage extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.props.handleSubmit(this.sendMessage)} className='chat-form'>
+      <Form
+        onSubmit={this.props.handleSubmit(this.sendMessage)}
+        className="chat-form"
+      >
         <FormGroup>
           <Row>
             <Col xs="12">
-            <InputGroup>
+              <InputGroup>
                 <Input
                   name="message"
                   tag={Field}
@@ -35,7 +38,11 @@ class InputMessage extends React.Component {
                   type="text"
                   placeholder="Message..."
                 />
-                <InputGroupAddon addonType="append"><Button color="secondary" type='submit'>Send</Button></InputGroupAddon>
+                <InputGroupAddon addonType="append">
+                  <Button color="secondary" type="submit">
+                    Send
+                  </Button>
+                </InputGroupAddon>
               </InputGroup>
             </Col>
           </Row>
