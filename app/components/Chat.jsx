@@ -20,7 +20,7 @@ export default class Chat extends React.Component {
   render() {
     const { messages, clientId } = this.props;
     const { byId: messagesById, allIds: messagesIds } = messages;
-  
+
     return (
       <div
         ref={el => {

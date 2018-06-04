@@ -27,14 +27,24 @@ const messages = handleActions(
       }));
       const msgEntities = Object.assign({}, ...extractIdsMessages);
       const msgIds = Object.keys(msgEntities);
-      return { ...state, byId: msgEntities, allIds: msgIds };
+
+      return {
+        ...state,
+        byId: msgEntities,
+        allIds: msgIds
+      };
     },
     [actions.addMessage](state, { payload: payloadedMessage }) {
       const { id } = payloadedMessage;
       const { byId, allIds } = state;
       const msgEntities = { ...byId, [id]: payloadedMessage };
       const msgIds = [...allIds, id.toString()];
-      return { ...state, byId: msgEntities, allIds: msgIds };
+
+      return {
+        ...state,
+        byId: msgEntities,
+        allIds: msgIds
+      };
     },
     [actions.preRenderMessage](state, { payload: payloadedMessage }) {
       const { localId } = payloadedMessage;
@@ -42,16 +52,23 @@ const messages = handleActions(
       const messageWithStatus = { ...payloadedMessage, status: "pending" };
       const msgEntities = { ...byId, [localId]: messageWithStatus };
       const msgIds = [...allIds, localId];
-      return { ...state, byId: msgEntities, allIds: msgIds };
+
+      return {
+        ...state,
+        byId: msgEntities,
+        allIds: msgIds
+      };
     },
     [actions.completeSendMessage](state, { payload: localMsgId }) {
       const { byId, allIds } = state;
       const RemovedLocalMessage = omit(byId, localMsgId);
-      const RemovedLocalMessageId = allIds.filter(
-        (id) => !(id === localMsgId)
-      );
-      
-      return { ...state, byId: RemovedLocalMessage, allIds: RemovedLocalMessageId };
+      const RemovedLocalMessageId = allIds.filter(id => !(id === localMsgId));
+
+      return {
+        ...state,
+        byId: RemovedLocalMessage,
+        allIds: RemovedLocalMessageId
+      };
     },
     [actions.errorSendMessage](state, { payload: localMsgId }) {
       const message = state.byId[localMsgId];

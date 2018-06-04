@@ -4,4 +4,7 @@ import * as actionCreators from "../actions";
 
 const mapStateToProps = ({ userName, clientId }) => ({ userName, clientId });
 
-export default connect(mapStateToProps, actionCreators)(InputMessage);
+export default connect(
+  mapStateToProps,
+  actionCreators
+)(InputMessage);
