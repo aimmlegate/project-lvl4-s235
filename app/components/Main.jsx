@@ -7,13 +7,16 @@ import Context from '../index';
 
 const Main = props => {
   const { userName, clientId } = props;
+  const chatWindowSize = {
+    height: 'calc(100vh - 80px)'
+  };
   return (
     <Context.Provider value={{ userName, clientId }}>
       <Row>
         <Col xs="2">
           <Channels />
         </Col>
-        <Col xs="9" className="chat-window">
+        <Col xs="9" className="d-flex flex-column" style={chatWindowSize}>
           <Context.Consumer>{selfData => <Chat selfData={selfData}/>}</Context.Consumer>
           <Context.Consumer>{selfData => <InputMessage selfData={selfData}/>}</Context.Consumer>
         </Col>

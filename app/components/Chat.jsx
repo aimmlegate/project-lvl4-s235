@@ -8,9 +8,7 @@ const mapStateToProps = state => ({
   clientId: state.clientId,
 });
 
-
 @connect(mapStateToProps)
-
 export default class Chat extends React.Component {
   scrollToBottom() {
     const window = this.chatWindow;
@@ -28,13 +26,16 @@ export default class Chat extends React.Component {
     const { messages } = this.props;
     const { clientId } = this.props.selfData;
     const { byId: messagesById, allIds: messagesIds } = messages;
-
+    const chatOverflow = {
+      'overflow-y': 'scroll',
+    };
     return (
       <div
         ref={el => {
           this.chatWindow = el;
         }}
-        className="chat-container"
+        className="flex-grow-1 mb-3 p-3 border rounded shadow-sm "
+        style={chatOverflow}
       >
         {messagesIds.map(msgId => {
           const { author, body, clientId: msgClientId, status, id, localId } = messagesById[msgId];

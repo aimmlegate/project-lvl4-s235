@@ -30,7 +30,7 @@ class InputMessage extends React.Component {
   render() {
     const { userName } = this.props.selfData;
     return (
-      <Form onSubmit={this.props.handleSubmit(this.sendMessage)} className="chat-form">
+      <Form onSubmit={this.props.handleSubmit(this.sendMessage)}>
         <FormGroup>
           <Row>
             <Col xs="12">

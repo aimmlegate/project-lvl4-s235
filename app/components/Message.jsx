@@ -3,8 +3,9 @@ import cn from 'classnames';
 
 const Message = props => {
   const messageClasses = cn({
-    'message': true,
-    'message-self': props.self,
+    'd-flex': true,
+    'flex-column': true,
+    'align-items-end': props.self,
     'text-muted': props.status === 'pending',
     'text-danger': props.status === 'error',
   });
