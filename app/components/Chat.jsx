@@ -1,8 +1,15 @@
-/* eslint-disable */
-
 import React from 'react';
-import { Alert } from 'reactstrap';
 import Message from './Message';
+import connect from '../connect';
+import getMessagesSelector from '../selectors';
+
+const mapStateToProps = state => ({
+  messages: getMessagesSelector(state),
+  clientId: state.clientId,
+});
+
+
+@connect(mapStateToProps)
 
 export default class Chat extends React.Component {
   scrollToBottom() {
@@ -10,10 +17,10 @@ export default class Chat extends React.Component {
     window.scrollTop = window.scrollHeight - window.clientHeight;
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     this.scrollToBottom();
   }
-  componentDidMount(prevProps, prevState) {
+  componentDidMount() {
     this.scrollToBottom();
   }
 

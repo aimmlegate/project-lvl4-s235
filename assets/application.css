@@ -21,27 +21,7 @@
   border-radius: .25rem;
   border: 1px solid #dcebf8;
 }
-
-.chat-container::-webkit-scrollbar {
-  width: 5px;
-}
-
-.chat-container::-webkit-scrollbar {
-  background-color: #dcebf8;
-}
-
-.chat-container::-webkit-scrollbar {
-  width: 5px;
-}
-
-.chat-container::-webkit-scrollbar-thumb {
-  background-color: #5faef4
-}
-    
-.chat-container::-webkit-scrollbar-track {
-  background: #dcebf8;
-}
-    
+ 
 .card-body {
   padding: .7rem;
 }

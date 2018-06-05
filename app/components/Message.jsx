@@ -4,15 +4,15 @@ import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 
 const Message = props => {
   const selfClass = cn({
-    'card-self': props.self,
-    'card-pending': props.status === 'pending',
-    'card-err': props.status === 'error',
+    'text-primary': props.self,
+    'text-muted': props.status === 'pending',
+    'text-danger': props.status === 'error',
   });
   return (
-    <Card className={selfClass}>
+    <Card>
       <CardBody>
         <CardTitle>{props.author}</CardTitle>
-        <CardText>{props.body}</CardText>
+        <CardText className={selfClass}>{props.body}</CardText>
       </CardBody>
     </Card>
   );

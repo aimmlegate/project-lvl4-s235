@@ -1,17 +1,17 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
-import ChannelsContainer from '../containers/ChannelsContainer';
-import InputMessageContainer from '../containers/InputMessageContainer';
-import ChatContainer from '../containers/ChatContainer';
+import Channels from '../components/Channels.jsx';
+import InputMessage from '../components/InputMessage.jsx';
+import Chat from '../components/Chat.jsx';
 
 const Main = () => (
   <Row>
     <Col xs="2">
-      <ChannelsContainer />
+      <Channels/>
     </Col>
     <Col xs="9" className="chat-window">
-      <ChatContainer />
-      <InputMessageContainer />
+      <Chat />
+      <InputMessage />
     </Col>
   </Row>
 );

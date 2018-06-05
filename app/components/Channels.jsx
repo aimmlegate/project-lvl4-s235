@@ -1,5 +1,10 @@
 import React from 'react';
 import { Alert } from 'reactstrap';
+import connect from '../connect';
+
+const mapStateToProps = state => ({ channels: state.channels });
+
+@connect(mapStateToProps)
 
 export default class Channels extends React.Component {
   render() {

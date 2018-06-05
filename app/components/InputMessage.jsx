@@ -1,18 +1,21 @@
-/* eslint-disable */
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import React from 'react';
 import {
   Form,
   FormGroup,
-  Label,
   Input,
   Button,
   InputGroupAddon,
   InputGroup,
   InputGroupText,
+  Row,
+  Col
 } from 'reactstrap';
-import { Row, Col } from 'reactstrap';
-import { Field } from 'redux-form';
+import connect from '../connect';
+
+const mapStateToProps = ({ userName, clientId }) => ({ userName, clientId });
+
+@connect(mapStateToProps)
 
 class InputMessage extends React.Component {
   sendMessage = values => {
