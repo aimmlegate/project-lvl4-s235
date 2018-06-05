@@ -1,5 +1,5 @@
-import { connect } from "react-redux";
-import Channels from "../components/Channels.jsx";
+import { connect } from 'react-redux';
+import Channels from '../components/Channels.jsx';
 
 const mapStateToProps = state => ({ channels: state.channels });
 

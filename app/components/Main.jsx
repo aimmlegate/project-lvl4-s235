@@ -1,8 +1,8 @@
-import React from "react";
-import { Row, Col } from "reactstrap";
-import ChannelsContainer from "../containers/ChannelsContainer";
-import InputMessageContainer from "../containers/InputMessageContainer";
-import ChatContainer from "../containers/ChatContainer";
+import React from 'react';
+import { Row, Col } from 'reactstrap';
+import ChannelsContainer from '../containers/ChannelsContainer';
+import InputMessageContainer from '../containers/InputMessageContainer';
+import ChatContainer from '../containers/ChatContainer';
 
 const Main = () => (
   <Row>

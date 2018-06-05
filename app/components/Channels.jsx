@@ -1,5 +1,5 @@
-import React from "react";
-import { Alert } from "reactstrap";
+import React from 'react';
+import { Alert } from 'reactstrap';
 
 export default class Channels extends React.Component {
   render() {

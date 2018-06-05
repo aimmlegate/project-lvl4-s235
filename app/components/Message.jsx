@@ -1,12 +1,12 @@
-import React from "react";
-import cn from "classnames";
-import { Card, CardText, CardBody, CardTitle } from "reactstrap";
+import React from 'react';
+import cn from 'classnames';
+import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 
 const Message = props => {
   const selfClass = cn({
-    "card-self": props.self,
-    "card-pending": props.status === "pending",
-    "card-err": props.status === "error"
+    'card-self': props.self,
+    'card-pending': props.status === 'pending',
+    'card-err': props.status === 'error',
   });
   return (
     <Card className={selfClass}>

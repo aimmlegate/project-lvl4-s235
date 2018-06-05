@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { reduxForm } from "redux-form";
-import React from "react";
+import { reduxForm } from 'redux-form';
+import React from 'react';
 import {
   Form,
   FormGroup,
@@ -9,10 +9,10 @@ import {
   Button,
   InputGroupAddon,
   InputGroup,
-  InputGroupText
-} from "reactstrap";
-import { Row, Col } from "reactstrap";
-import { Field } from "redux-form";
+  InputGroupText,
+} from 'reactstrap';
+import { Row, Col } from 'reactstrap';
+import { Field } from 'redux-form';
 
 class InputMessage extends React.Component {
   sendMessage = values => {
@@ -26,10 +26,7 @@ class InputMessage extends React.Component {
   render() {
     const { userName } = this.props;
     return (
-      <Form
-        onSubmit={this.props.handleSubmit(this.sendMessage)}
-        className="chat-form"
-      >
+      <Form onSubmit={this.props.handleSubmit(this.sendMessage)} className="chat-form">
         <FormGroup>
           <Row>
             <Col xs="12">
@@ -60,5 +57,5 @@ class InputMessage extends React.Component {
 }
 
 export default reduxForm({
-  form: "inputMessage"
+  form: 'inputMessage',
 })(InputMessage);

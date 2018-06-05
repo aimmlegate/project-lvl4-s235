@@ -1,4 +1,4 @@
-import * as actions from "./actions";
+import * as actions from './actions';
 
 export default (store, channels, messages, userName, clientId) => {
   store.dispatch(actions.addChanel(channels));

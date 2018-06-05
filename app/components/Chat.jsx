@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import React from "react";
-import { Alert } from "reactstrap";
-import Message from "./Message";
+import React from 'react';
+import { Alert } from 'reactstrap';
+import Message from './Message';
 
 export default class Chat extends React.Component {
   scrollToBottom() {
@@ -29,14 +29,7 @@ export default class Chat extends React.Component {
         className="chat-container"
       >
         {messagesIds.map(msgId => {
-          const {
-            author,
-            body,
-            clientId: msgClientId,
-            status,
-            id,
-            localId
-          } = messagesById[msgId];
+          const { author, body, clientId: msgClientId, status, id, localId } = messagesById[msgId];
           return (
             <Message
               key={id || localId}
