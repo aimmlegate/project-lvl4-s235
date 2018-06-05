@@ -9,11 +9,11 @@ const defaultState = {};
 const channels = handleActions(
   {
     [actions.addChanel](state, { payload: payloadedChannels }) {
-      const formatedChannels = payloadedChannels.map(channel => ({
-        [channel.id]: channel,
-      }));
-      const unionNewChanels = Object.assign({}, ...formatedChannels);
-      return { ...state, ...unionNewChanels };
+      const channelEntities = payloadedChannels.reduce(
+        (acc, channel) => ({ ...acc, [channel.id]: channel }),
+        {}
+      );
+      return { ...state, ...channelEntities };
     },
   },
   defaultState
@@ -22,10 +22,10 @@ const channels = handleActions(
 const messages = handleActions(
   {
     [actions.addMessageAll](state, { payload: payloadedMessages }) {
-      const extractIdsMessages = payloadedMessages.map(message => ({
-        [message.id]: message,
-      }));
-      const msgEntities = Object.assign({}, ...extractIdsMessages);
+      const msgEntities = payloadedMessages.reduce(
+        (acc, message) => ({ ...acc, [message.id]: message }),
+        {}
+      );
       const msgIds = Object.keys(msgEntities);
 
       return {
