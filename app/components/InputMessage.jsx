@@ -9,7 +9,7 @@ import {
   InputGroup,
   InputGroupText,
   Row,
-  Col
+  Col,
 } from 'reactstrap';
 import connect from '../connect';
 
@@ -19,7 +19,8 @@ const mapStateToProps = ({ userName, clientId }) => ({ userName, clientId });
 
 class InputMessage extends React.Component {
   sendMessage = values => {
-    const { userName, clientId } = this.props;
+    const { userName, clientId } = this.props.selfData;
+    
     if (values.message) {
       this.props.sendMessage(1, values, userName, clientId);
       this.props.reset();
@@ -27,7 +28,7 @@ class InputMessage extends React.Component {
   };
 
   render() {
-    const { userName } = this.props;
+    const { userName } = this.props.selfData;
     return (
       <Form onSubmit={this.props.handleSubmit(this.sendMessage)} className="chat-form">
         <FormGroup>

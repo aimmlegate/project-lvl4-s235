@@ -34,21 +34,20 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
-setStartState(
-  store,
-  channels,
-  messages,
-  Cookies.get('aiml-chat-username'),
-  Cookies.get('aiml-chat-client-id')
-);
+setStartState(store, channels, messages);
 
 socket.on('newMessage', ({ data: { attributes: message } }) => {
   store.dispatch(actionCreators.addMessage(message));
 });
 
+export default React.createContext();
+
 ReactDOM.render(
   <Provider store={store}>
-    <Main />
+    <Main
+      userName={Cookies.get('aiml-chat-username')}
+      clientId={Cookies.get('aiml-chat-client-id')}
+    />
   </Provider>,
   document.getElementById('chat')
 );

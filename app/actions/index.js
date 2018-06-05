@@ -5,8 +5,6 @@ import uuid from 'uuid/v1';
 export const addChanel = createAction('CHANEL_ADD');
 export const addMessageAll = createAction('MESSAGE_ALL_ADD');
 export const addMessage = createAction('MESSAGE_ADD');
-export const setUsername = createAction('SET_USERNAME');
-export const setClientId = createAction('SET_CLIENT_ID');
 export const preRenderMessage = createAction('PRE_RENDER_MESSAGE');
 export const completeSendMessage = createAction('COMPLETE_SEND_MESSAGE');
 export const errorSendMessage = createAction('ERROR_SEND_MESSAGE');
