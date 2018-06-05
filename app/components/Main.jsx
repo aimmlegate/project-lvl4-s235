@@ -14,8 +14,8 @@ const Main = props => {
           <Channels />
         </Col>
         <Col xs="9" className="chat-window">
-          <Chat />
-          <Context.Consumer>{selfData => <InputMessage selfData={selfData} />}</Context.Consumer>
+          <Context.Consumer>{selfData => <Chat selfData={selfData}/>}</Context.Consumer>
+          <Context.Consumer>{selfData => <InputMessage selfData={selfData}/>}</Context.Consumer>
         </Col>
       </Row>
     </Context.Provider>

@@ -1,20 +1,18 @@
 import React from 'react';
 import cn from 'classnames';
-import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
 
 const Message = props => {
-  const selfClass = cn({
-    'text-primary': props.self,
+  const messageClasses = cn({
+    'message': true,
+    'message-self': props.self,
     'text-muted': props.status === 'pending',
     'text-danger': props.status === 'error',
   });
   return (
-    <Card>
-      <CardBody>
-        <CardTitle>{props.author}</CardTitle>
-        <CardText className={selfClass}>{props.body}</CardText>
-      </CardBody>
-    </Card>
+    <div className={messageClasses}>
+      <h6>{props.author}</h6>
+      <p>{props.body}</p>
+    </div>
   );
 };
 

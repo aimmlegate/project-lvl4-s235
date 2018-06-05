@@ -25,7 +25,8 @@ export default class Chat extends React.Component {
   }
 
   render() {
-    const { messages, clientId } = this.props;
+    const { messages } = this.props;
+    const { clientId } = this.props.selfData;
     const { byId: messagesById, allIds: messagesIds } = messages;
 
     return (
