@@ -4,25 +4,25 @@ import uuid from 'uuid/v1';
 import routes from '../routes';
 
 export const addChanel = createAction('CHANEL_ADD');
-export const addMessageAll = createAction('MESSAGE_ALL_ADD');
-export const addMessage = createAction('MESSAGE_ADD');
-export const preRenderMessage = createAction('PRE_RENDER_MESSAGE');
-export const completeSendMessage = createAction('COMPLETE_SEND_MESSAGE');
-export const errorSendMessage = createAction('ERROR_SEND_MESSAGE');
+export const addMessageAll = createAction('MESSAGE_ADD_ALL');
+export const addMessageIo = createAction('MESSAGE_ADD_IO');
+export const addMessageUpdate = createAction('MESSAGE_ADD_REQUEST');
+export const addMessageSuccess = createAction('MESSAGE_ADD_SUCCESS');
+export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
 
 export const sendMessage = (channelId, { message }, userName, clientId) => async dispatch => {
   const attributes = { author: userName, body: message, channelId, clientId };
   const localId = uuid();
-  dispatch(preRenderMessage({ ...attributes, localId }));
+  dispatch(addMessageUpdate({ ...attributes, localId }));
   try {
     await axios.post(
       routes.addMessageToChannelUrl(channelId),
       { data: { attributes } },
       { timeout: 5000 }
     );
-    dispatch(completeSendMessage(localId));
+    dispatch(addMessageSuccess(localId));
   } catch (e) {
     console.error(e);
-    dispatch(errorSendMessage(localId));
+    dispatch(addMessageFailure(localId));
   }
 };

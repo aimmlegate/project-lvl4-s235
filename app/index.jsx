@@ -37,7 +37,7 @@ const store = createStore(
 setStartState(store, channels, messages);
 
 socket.on('newMessage', ({ data: { attributes: message } }) => {
-  store.dispatch(actionCreators.addMessage(message));
+  store.dispatch(actionCreators.addMessageIo(message));
 });
 
 export default React.createContext();

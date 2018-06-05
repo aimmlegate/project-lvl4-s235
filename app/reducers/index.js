@@ -34,7 +34,7 @@ const messages = handleActions(
         allIds: msgIds,
       };
     },
-    [actions.addMessage](state, { payload: payloadedMessage }) {
+    [actions.addMessageIo](state, { payload: payloadedMessage }) {
       const { id } = payloadedMessage;
       const { byId, allIds } = state;
       const msgEntities = { ...byId, [id]: payloadedMessage };
@@ -46,7 +46,7 @@ const messages = handleActions(
         allIds: msgIds,
       };
     },
-    [actions.preRenderMessage](state, { payload: payloadedMessage }) {
+    [actions.addMessageUpdate](state, { payload: payloadedMessage }) {
       const { localId } = payloadedMessage;
       const { byId, allIds } = state;
       const messageWithStatus = { ...payloadedMessage, status: 'pending' };
@@ -59,7 +59,7 @@ const messages = handleActions(
         allIds: msgIds,
       };
     },
-    [actions.completeSendMessage](state, { payload: localMsgId }) {
+    [actions.addMessageSuccess](state, { payload: localMsgId }) {
       const { byId, allIds } = state;
       const RemovedLocalMessage = omit(byId, localMsgId);
       const RemovedLocalMessageId = allIds.filter(id => !(id === localMsgId));
@@ -70,7 +70,7 @@ const messages = handleActions(
         allIds: RemovedLocalMessageId,
       };
     },
-    [actions.errorSendMessage](state, { payload: localMsgId }) {
+    [actions.addMessageFailure](state, { payload: localMsgId }) {
       const message = state.byId[localMsgId];
       const messageWithStatus = { ...message, status: 'error' };
       const msgEntities = { ...state.byId, [localMsgId]: messageWithStatus };
