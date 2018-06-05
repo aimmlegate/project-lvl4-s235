@@ -20,9 +20,9 @@ const mapStateToProps = ({ userName, clientId }) => ({ userName, clientId });
 class InputMessage extends React.Component {
   sendMessage = values => {
     const { userName, clientId } = this.props.selfData;
-    
+    const channelId = 1;
     if (values.message) {
-      this.props.sendMessage(1, values, userName, clientId);
+      this.props.sendMessage(channelId, values, userName, clientId);
       this.props.reset();
     }
   };

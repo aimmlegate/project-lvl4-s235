@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 import axios from 'axios';
 import uuid from 'uuid/v1';
+import routes from '../routes';
 
 export const addChanel = createAction('CHANEL_ADD');
 export const addMessageAll = createAction('MESSAGE_ALL_ADD');
@@ -15,7 +16,7 @@ export const sendMessage = (channelId, { message }, userName, clientId) => async
   dispatch(preRenderMessage({ ...attributes, localId }));
   try {
     await axios.post(
-      `api/v1/channels/${channelId}/messages`,
+      routes.addMessageToChannelUrl(channelId),
       { data: { attributes } },
       { timeout: 5000 }
     );
