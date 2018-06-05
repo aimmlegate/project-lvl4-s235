@@ -21,6 +21,7 @@ export const sendMessage = (channelId, { message }, userName, clientId) => async
     );
     dispatch(completeSendMessage(localId));
   } catch (e) {
+    console.error(e);
     dispatch(errorSendMessage(localId));
   }
 };
