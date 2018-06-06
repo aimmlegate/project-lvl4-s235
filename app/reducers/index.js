@@ -5,18 +5,27 @@ import { omit } from 'lodash';
 import * as actions from '../actions';
 
 const defaultState = {};
+const defaultChannelsState = { current: '1' };
 
 const channels = handleActions(
   {
     [actions.addChanel](state, { payload: payloadedChannels }) {
-      const channelEntities = payloadedChannels.reduce(
+      const channelsEntities = payloadedChannels.reduce(
         (acc, channel) => ({ ...acc, [channel.id]: channel }),
         {}
       );
-      return { ...state, ...channelEntities };
+      const channelsIds = Object.keys(channelsEntities);
+      return {
+        ...state,
+        byId: channelsEntities,
+        allIds: channelsIds,
+      };
     },
+    [actions.setCurrentChanel](state, { payload: payloadedCurrentId }) {
+      return { ...state, current: payloadedCurrentId};
+    }
   },
-  defaultState
+  defaultChannelsState
 );
 
 const messages = handleActions(

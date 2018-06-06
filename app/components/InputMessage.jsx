@@ -13,16 +13,17 @@ import {
 } from 'reactstrap';
 import connect from '../connect';
 
-const mapStateToProps = ({ userName, clientId }) => ({ userName, clientId });
+const mapStateToProps = state => ({
+  currentChannel: state.channels.current,
+});
 
 @connect(mapStateToProps)
-
 class InputMessage extends React.Component {
   sendMessage = values => {
     const { userName, clientId } = this.props.selfData;
-    const channelId = 1;
+    const { currentChannel } = this.props;
     if (values.message) {
-      this.props.sendMessage(channelId, values, userName, clientId);
+      this.props.sendMessage(currentChannel, values, userName, clientId);
       this.props.reset();
     }
   };

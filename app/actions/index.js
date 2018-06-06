@@ -4,6 +4,7 @@ import uuid from 'uuid/v1';
 import routes from '../routes';
 
 export const addChanel = createAction('CHANEL_ADD');
+export const setCurrentChanel = createAction('CHANEL_SET_CURRENT');
 export const addMessageAll = createAction('MESSAGE_ADD_ALL');
 export const addMessageIo = createAction('MESSAGE_ADD_IO');
 export const addMessageUpdate = createAction('MESSAGE_ADD_REQUEST');

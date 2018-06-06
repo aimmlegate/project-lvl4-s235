@@ -6,6 +6,7 @@ import getMessagesSelector from '../selectors';
 const mapStateToProps = state => ({
   messages: getMessagesSelector(state),
   clientId: state.clientId,
+  currentChannel: state.channels.current,
 });
 
 @connect(mapStateToProps)
@@ -23,11 +24,11 @@ export default class Chat extends React.Component {
   }
 
   render() {
-    const { messages } = this.props;
+    const { messages, currentChannel } = this.props;
     const { clientId } = this.props.selfData;
     const { byId: messagesById, allIds: messagesIds } = messages;
     const chatOverflow = {
-      'overflow-y': 'scroll',
+      overflowY: 'scroll',
     };
     return (
       <div
@@ -38,16 +39,30 @@ export default class Chat extends React.Component {
         style={chatOverflow}
       >
         {messagesIds.map(msgId => {
-          const { author, body, clientId: msgClientId, status, id, localId } = messagesById[msgId];
-          return (
-            <Message
-              key={id || localId}
-              author={author}
-              body={body}
-              self={clientId === msgClientId}
-              status={status}
-            />
-          );
+          const {
+            author,
+            body,
+            clientId: msgClientId,
+            status,
+            id,
+            localId,
+            channelId,
+          } = messagesById[msgId];
+          let message;
+          if (channelId.toString() === currentChannel.toString()) {
+            message = (
+              <Message
+                key={id || localId}
+                author={author}
+                body={body}
+                self={clientId === msgClientId}
+                status={status}
+              />
+            );
+          } else {
+            message = null;
+          }
+          return message;
         })}
       </div>
     );
