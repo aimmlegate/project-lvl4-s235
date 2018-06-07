@@ -9,7 +9,7 @@ const defaultChannelsState = { current: '1' };
 
 const channels = handleActions(
   {
-    [actions.addChanel](state, { payload: payloadedChannels }) {
+    [actions.addChanelAll](state, { payload: payloadedChannels }) {
       const channelsEntities = payloadedChannels.reduce(
         (acc, channel) => ({ ...acc, [channel.id]: channel }),
         {}
@@ -21,9 +21,21 @@ const channels = handleActions(
         allIds: channelsIds,
       };
     },
+    [actions.addChanelSuccess](state, { payload: payloadedChannel }) {
+      console.log(payloadedChannel);
+      const { id } = payloadedChannel;
+      const channelsEntities = { ...state.byId, [id]: payloadedChannel };
+      const channelsIds = Object.keys(channelsEntities);
+
+      return {
+        ...state,
+        byId: channelsEntities,
+        allIds: channelsIds,
+      };
+    },
     [actions.setCurrentChanel](state, { payload: payloadedCurrentId }) {
-      return { ...state, current: payloadedCurrentId};
-    }
+      return { ...state, current: payloadedCurrentId };
+    },
   },
   defaultChannelsState
 );
