@@ -16,7 +16,7 @@ export default class Channels extends React.Component {
     const { allIds, byId, current } = this.props.channels;
     return (
       <div>
-        <ListGroup>
+        <ListGroup className="shadow-sm">
           {allIds.map(id => (
             <ListGroupItem
               className={cn({ 'active': id === current })}
