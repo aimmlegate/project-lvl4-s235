@@ -7,7 +7,6 @@ const mapStateToProps = state => ({ channels: state.channels });
 
 @connect(mapStateToProps)
 export default class Channels extends React.Component {
-
   changeChannel = id => () => {
     this.props.setCurrentChanel(id);
   };
@@ -19,7 +18,7 @@ export default class Channels extends React.Component {
         <ListGroup className="shadow-sm">
           {allIds.map(id => (
             <ListGroupItem
-              className={cn({ 'active': id === current })}
+              className={cn({ active: id === current })}
               key={id}
               onClick={this.changeChannel(id)}
             >

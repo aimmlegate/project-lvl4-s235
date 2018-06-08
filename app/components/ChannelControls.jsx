@@ -1,21 +1,26 @@
 import React from 'react';
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import ModalNewChannel from './ModalNewChannel';
+import ModalEditChannel from './ModalEditChannel';
 import connect from '../connect';
 
 const mapStateToProps = state => ({ channels: state.channels });
 
 @connect(mapStateToProps)
 export default class ChannelControls extends React.Component {
-  state = { modal: false };
+  state = { modalCreate: false, modalEdit: false };
 
-  addNewChannel = name => {
-    this.props.addChannel(name);
+  addNewChannel = name => this.props.addChannel(name);
+
+  toggleNewChannel = () => {
+    this.setState({
+      modalCreate: !this.state.modalCreate,
+    });
   };
 
-  toggle = () => {
+  toggleEditChannel = () => {
     this.setState({
-      modal: !this.state.modal,
+      modalEdit: !this.state.modalEdit,
     });
   };
 
@@ -28,12 +33,14 @@ export default class ChannelControls extends React.Component {
           <NavbarBrand>{name}</NavbarBrand>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="#" onClick={this.toggle}>
+              <NavLink href="#" onClick={this.toggleNewChannel}>
                 New channel
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Edit channel</NavLink>
+              <NavLink href="#" onClick={this.toggleEditChannel}>
+                Edit channel
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="#">Delete channel</NavLink>
@@ -41,8 +48,13 @@ export default class ChannelControls extends React.Component {
           </Nav>
         </Navbar>
         <ModalNewChannel
-          isOpen={this.state.modal}
-          toggle={this.toggle}
+          isOpen={this.state.modalCreate}
+          toggle={this.toggleNewChannel}
+          create={this.addNewChannel}
+        />
+        <ModalEditChannel
+          isOpen={this.state.modalEdit}
+          toggle={this.toggleEditChannel}
           create={this.addNewChannel}
         />
       </div>

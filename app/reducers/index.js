@@ -33,7 +33,7 @@ const channels = handleActions(
       return { ...state, current: payloadedCurrentId };
     },
   },
-  defaultChannelsState
+  defaultChannelsState,
 );
 
 const messages = handleActions(
@@ -91,7 +91,7 @@ const messages = handleActions(
       return { ...state, byId: msgEntities };
     },
   },
-  defaultState
+  defaultState,
 );
 
 export default combineReducers({

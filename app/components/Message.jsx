@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-const Message = props => {
+const Message = (props) => {
   const messageClasses = cn({
     'd-flex': true,
     'flex-column': true,

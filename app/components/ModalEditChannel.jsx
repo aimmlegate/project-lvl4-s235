@@ -13,28 +13,27 @@ import {
 } from 'reactstrap';
 
 class ModalEditChannel extends React.Component {
-
   handleClose = () => {
     this.props.toggle();
     this.props.reset();
   };
 
-  createChannel = values => {
+  createChannel = (values) => {
     const { channelName } = values;
     this.props.create(channelName);
     this.props.toggle();
     this.props.reset();
   };
- 
+
   render() {
     return (
       <div>
         <Modal isOpen={this.props.isOpen}>
           <Form onSubmit={this.props.handleSubmit(this.createChannel)}>
-            <ModalHeader toggle={this.handleClose}>New Channel</ModalHeader>
+            <ModalHeader toggle={this.handleClose}>Edit channel</ModalHeader>
             <ModalBody>
               <FormGroup>
-                <Label for="exampleEmail">Channel name</Label>
+                <Label for="exampleEmail">New name</Label>
                 <Input
                   tag={Field}
                   type="text"
@@ -47,7 +46,7 @@ class ModalEditChannel extends React.Component {
             </ModalBody>
             <ModalFooter>
               <Button color="primary" type="submit">
-                Create
+                Save
               </Button>
             </ModalFooter>
           </Form>

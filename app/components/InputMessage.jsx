@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
 
 @connect(mapStateToProps)
 class InputMessage extends React.Component {
-  sendMessage = values => {
+  sendMessage = (values) => {
     const { userName, clientId } = this.props.selfData;
     const { currentChannel } = this.props;
     if (values.message) {

@@ -13,19 +13,17 @@ import {
 } from 'reactstrap';
 
 class ModalNewChannel extends React.Component {
-
   handleClose = () => {
     this.props.toggle();
     this.props.reset();
   };
 
-  createChannel = values => {
+  createChannel = (values) => {
     const { channelName } = values;
     this.props.create(channelName);
     this.props.toggle();
     this.props.reset();
   };
- 
   render() {
     return (
       <div>
