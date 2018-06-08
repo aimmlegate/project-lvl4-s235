@@ -38,7 +38,7 @@ export default class ChannelControls extends React.Component {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#" onClick={this.toggleEditChannel}>
+              <NavLink href="#">
                 Edit channel
               </NavLink>
             </NavItem>
