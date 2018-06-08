@@ -12,7 +12,7 @@ import {
   FormGroup,
 } from 'reactstrap';
 
-class ModalNewChannel extends React.Component {
+class ModalEditChannel extends React.Component {
 
   handleClose = () => {
     this.props.toggle();
@@ -58,5 +58,5 @@ class ModalNewChannel extends React.Component {
 }
 
 export default reduxForm({
-  form: 'createChannel',
-})(ModalNewChannel);
+  form: 'editChannel',
+})(ModalEditChannel);
