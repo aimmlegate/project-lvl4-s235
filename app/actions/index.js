@@ -17,34 +17,41 @@ export const addMessageUpdate = createAction('MESSAGE_ADD_REQUEST');
 export const addMessageSuccess = createAction('MESSAGE_ADD_SUCCESS');
 export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
 
-export const sendMessage = (channelId, { message }, userName, clientId) => async dispatch => {
-  const attributes = { author: userName, body: message, channelId, clientId };
+export const sendMessage = (channelId, { message }, userName, clientId) => async (dispatch) => {
+  const attributes = {
+    author: userName,
+    body: message,
+    channelId,
+    clientId,
+  };
   const localId = uuid();
   dispatch(addMessageUpdate({ ...attributes, localId }));
   try {
     await axios.post(
       routes.addMessageToChannelUrl(channelId),
       { data: { attributes } },
-      { timeout: 5000 }
+      { timeout: 5000 },
     );
     dispatch(addMessageSuccess(localId));
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
     dispatch(addMessageFailure(localId));
   }
 };
 
-export const addChannel = name => async dispatch => {
+export const addChannel = name => async (dispatch) => {
   const attributes = { name };
   dispatch(addChanelRequest());
   try {
     const { data: { data: { attributes: responce } } } = await axios.post(
       routes.addChannelUrl(),
       { data: { attributes } },
-      { timeout: 5000 }
+      { timeout: 5000 },
     );
     dispatch(addChanelSuccess(responce));
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.error(e);
     dispatch(addChanelFailure());
   }
