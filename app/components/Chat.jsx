@@ -35,7 +35,7 @@ export default class Chat extends React.Component {
         ref={el => {
           this.chatWindow = el;
         }}
-        className="flex-grow-1 mb-3 p-3 border rounded shadow-sm "
+        className="flex-grow-1 mb-3 mt-3 p-3 border rounded shadow-sm "
         style={chatOverflow}
       >
         {messagesIds.map(msgId => {
