@@ -31,7 +31,7 @@ if (!isClientId()) {
 const store = createStore(
   reducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(thunk)
+  applyMiddleware(thunk),
 );
 
 setStartState(store, channels, messages);
@@ -49,5 +49,5 @@ ReactDOM.render(
       clientId={Cookies.get('aiml-chat-client-id')}
     />
   </Provider>,
-  document.getElementById('chat')
+  document.getElementById('chat'),
 );
