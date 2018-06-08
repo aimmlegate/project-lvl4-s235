@@ -32,6 +32,11 @@ const channels = handleActions(
     [actions.setCurrentChanel](state, { payload: payloadedCurrentId }) {
       return { ...state, current: payloadedCurrentId };
     },
+    [actions.editChanelIo](state, { payload: payloadedChannel }) {
+      const { id } = payloadedChannel;
+      const channelsEntities = { ...state.byId, [id]: payloadedChannel };
+      return { ...state, byId: channelsEntities };
+    },
   },
   defaultChannelsState,
 );

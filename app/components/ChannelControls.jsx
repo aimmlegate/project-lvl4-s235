@@ -12,6 +12,11 @@ export default class ChannelControls extends React.Component {
 
   addNewChannel = name => this.props.addChannel(name);
 
+  editChannel = (name) => {
+    const { current } = this.props.channels;
+    this.props.editChannel(name, current);
+  };
+
   toggleNewChannel = () => {
     this.setState({
       modalCreate: !this.state.modalCreate,
@@ -38,7 +43,7 @@ export default class ChannelControls extends React.Component {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">
+              <NavLink href="#" onClick={this.toggleEditChannel}>
                 Edit channel
               </NavLink>
             </NavItem>
@@ -55,7 +60,7 @@ export default class ChannelControls extends React.Component {
         <ModalEditChannel
           isOpen={this.state.modalEdit}
           toggle={this.toggleEditChannel}
-          create={this.addNewChannel}
+          create={this.editChannel}
         />
       </div>
     );

@@ -39,6 +39,9 @@ setStartState(store, channels, messages);
 socket.on('newMessage', ({ data: { attributes: message } }) => {
   store.dispatch(actionCreators.addMessageIo(message));
 });
+socket.on('renameChannel', ({ data: { attributes: channel } }) => {
+  store.dispatch(actionCreators.editChanelIo(channel));
+});
 
 export default React.createContext();
 

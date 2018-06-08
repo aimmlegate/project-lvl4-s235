@@ -8,6 +8,11 @@ export const addChanelRequest = createAction('CHANEL_ADD_REQUEST');
 export const addChanelSuccess = createAction('CHANEL_ADD_SUCCESS');
 export const addChanelFailure = createAction('CHANEL_ADD_FAILURE');
 
+export const editChanelRequest = createAction('CHANEL_EDIT_REQUEST');
+export const editChanelSuccess = createAction('CHANEL_EDIT_SUCCESS');
+export const editChanelFailure = createAction('CHANEL_EDIT_FAILURE');
+export const editChanelIo = createAction('CHANEL_EDIT__IO');
+
 export const setCurrentChanel = createAction('CHANEL_SET_CURRENT');
 
 export const addMessageAll = createAction('MESSAGE_ADD_ALL');
@@ -54,5 +59,22 @@ export const addChannel = name => async (dispatch) => {
     // eslint-disable-next-line no-console
     console.error(e);
     dispatch(addChanelFailure());
+  }
+};
+
+export const editChannel = (name, id) => async (dispatch) => {
+  const attributes = { name };
+  dispatch(editChanelRequest());
+  try {
+    await axios.patch(
+      routes.editChannelUrl(id),
+      { data: { id, attributes } },
+      { timeout: 5000 },
+    );
+    dispatch(editChanelSuccess());
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e);
+    dispatch(editChanelFailure());
   }
 };
