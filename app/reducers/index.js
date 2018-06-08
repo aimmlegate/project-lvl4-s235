@@ -1,7 +1,7 @@
 import { reducer as formReducer } from 'redux-form';
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
-import { omit } from 'lodash';
+import { omit, keyBy } from 'lodash';
 import * as actions from '../actions';
 
 const defaultState = {};
@@ -10,10 +10,7 @@ const defaultChannelsState = { current: '1' };
 const channels = handleActions(
   {
     [actions.addChanelAll](state, { payload: payloadedChannels }) {
-      const channelsEntities = payloadedChannels.reduce(
-        (acc, channel) => ({ ...acc, [channel.id]: channel }),
-        {}
-      );
+      const channelsEntities = keyBy(payloadedChannels, 'id');
       const channelsIds = Object.keys(channelsEntities);
       return {
         ...state,
@@ -22,7 +19,6 @@ const channels = handleActions(
       };
     },
     [actions.addChanelSuccess](state, { payload: payloadedChannel }) {
-      console.log(payloadedChannel);
       const { id } = payloadedChannel;
       const channelsEntities = { ...state.byId, [id]: payloadedChannel };
       const channelsIds = Object.keys(channelsEntities);
@@ -43,10 +39,7 @@ const channels = handleActions(
 const messages = handleActions(
   {
     [actions.addMessageAll](state, { payload: payloadedMessages }) {
-      const msgEntities = payloadedMessages.reduce(
-        (acc, message) => ({ ...acc, [message.id]: message }),
-        {}
-      );
+      const msgEntities = keyBy(payloadedMessages, 'id');
       const msgIds = Object.keys(msgEntities);
 
       return {
