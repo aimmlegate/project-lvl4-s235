@@ -16,6 +16,7 @@ export default class Channels extends React.Component {
   };
 
   addNewChannel = name => {
+    console.log(name);
     this.props.addChannel(name);
   }
 
@@ -42,7 +43,7 @@ export default class Channels extends React.Component {
           ))}
           <Alert color="info" onClick={this.toggle}>New channel+</Alert>
         </div>
-        <ModalNewChannel isOpen={this.state.modal} toggle={this.toggle} submit={this.addNewChannel} />
+        <ModalNewChannel isOpen={this.state.modal} toggle={this.toggle} create={this.addNewChannel} />
       </div>
     );
   }

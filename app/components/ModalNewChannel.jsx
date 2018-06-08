@@ -1,4 +1,5 @@
 import React from 'react';
+import { reduxForm, Field } from 'redux-form';
 import {
   Button,
   Modal,
@@ -12,39 +13,34 @@ import {
 } from 'reactstrap';
 
 class ModalNewChannel extends React.Component {
-  state = { name: '' };
-
-  handleChange = e => {
-    this.setState({ name: e.target.value });
-  };
 
   handleClose = () => {
     this.props.toggle();
-    this.setState({ name: '' });
+    this.props.reset();
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.submit(this.state.name);
+  createChannel = values => {
+    const { channelName } = values;
+    this.props.create(channelName);
     this.props.toggle();
-    this.setState({ name: '' });
+    this.props.reset();
   };
-
+ 
   render() {
     return (
       <div>
         <Modal isOpen={this.props.isOpen}>
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.props.handleSubmit(this.createChannel)}>
             <ModalHeader toggle={this.handleClose}>New Channel</ModalHeader>
             <ModalBody>
               <FormGroup>
                 <Label for="exampleEmail">Channel name</Label>
                 <Input
+                  tag={Field}
                   type="text"
+                  component="input"
                   name="channelName"
                   placeholder="Enter name"
-                  value={this.state.name}
-                  onChange={this.handleChange}
                   required
                 />
               </FormGroup>
@@ -61,4 +57,6 @@ class ModalNewChannel extends React.Component {
   }
 }
 
-export default ModalNewChannel;
+export default reduxForm({
+  form: 'inputMessage',
+})(ModalNewChannel);
