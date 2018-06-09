@@ -6,6 +6,7 @@ import * as actions from '../actions';
 
 const defaultState = {};
 const defaultChannelsState = { current: '1' };
+const defaultAppStatusState = { statusText: 'Hello world', type: 'ok' };
 
 const channels = handleActions(
   {
@@ -129,8 +130,42 @@ const messages = handleActions(
   defaultState,
 );
 
+const appstatus = handleActions(
+  {
+    [actions.addChanelRequest](state) {
+      return { ...state, statusText: 'adding channel...', type: 'info' };
+    },
+    [actions.addChanelSuccess](state) {
+      return { ...state, statusText: 'ok', type: 'ok' };
+    },
+    [actions.addChanelFailure](state, { payload: error }) {
+      return { ...state, statusText: error, type: 'error' };
+    },
+    [actions.editChanelRequest](state) {
+      return { ...state, statusText: 'edit channel...', type: 'info' };
+    },
+    [actions.editChanelSuccess](state) {
+      return { ...state, statusText: 'ok', type: 'ok' };
+    },
+    [actions.editChanelFailure](state, { payload: error }) {
+      return { ...state, statusText: error, type: 'error' };
+    },
+    [actions.delChanelRequest](state) {
+      return { ...state, statusText: 'deleting channel...', type: 'info' };
+    },
+    [actions.delChanelSuccess](state) {
+      return { ...state, statusText: 'ok', type: 'ok' };
+    },
+    [actions.delChanelFailure](state, { payload: error }) {
+      return { ...state, statusText: error, type: 'error' };
+    },
+  },
+  defaultAppStatusState,
+);
+
 export default combineReducers({
   form: formReducer,
   channels,
   messages,
+  appstatus,
 });

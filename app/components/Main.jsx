@@ -4,6 +4,7 @@ import Channels from '../components/Channels.jsx';
 import ChannelControls from '../components/ChannelControls';
 import InputMessage from '../components/InputMessage.jsx';
 import Chat from '../components/Chat.jsx';
+import Status from '../components/Status.jsx';
 import Context from '../index';
 
 const Main = (props) => {
@@ -28,6 +29,7 @@ const Main = (props) => {
         <Col xs="10" className="d-flex flex-column" style={chatWindowSize}>
           <Context.Consumer>{selfData => <Chat selfData={selfData} />}</Context.Consumer>
           <Context.Consumer>{selfData => <InputMessage selfData={selfData} />}</Context.Consumer>
+          <Status/>
         </Col>
       </Row>
     </Context.Provider>

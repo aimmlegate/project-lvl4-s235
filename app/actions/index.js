@@ -44,8 +44,6 @@ export const sendMessage = (channelId, { message }, userName, clientId) => async
     );
     dispatch(addMessageSuccess(localId));
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e);
     dispatch(addMessageFailure(localId));
   }
 };
@@ -61,8 +59,6 @@ export const addChannel = name => async (dispatch) => {
     );
     dispatch(addChanelSuccess(responce));
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e);
     dispatch(addChanelFailure());
   }
 };
@@ -78,8 +74,6 @@ export const editChannel = (name, id) => async (dispatch) => {
     );
     dispatch(editChanelSuccess());
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e);
     dispatch(editChanelFailure());
   }
 };
@@ -94,8 +88,6 @@ export const delChannel = id => async (dispatch) => {
     );
     dispatch(delChanelSuccess());
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e);
     dispatch(delChanelFailure());
   }
 };
