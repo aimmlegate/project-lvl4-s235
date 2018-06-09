@@ -76,7 +76,7 @@ export const editChannel = (name, id) => async (dispatch) => {
       { data: { id, attributes } },
       { timeout: 5000 },
     );
-    dispatch(delChanelSuccess());
+    dispatch(editChanelSuccess());
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e);

@@ -1,7 +1,7 @@
 import { reducer as formReducer } from 'redux-form';
 import { handleActions } from 'redux-actions';
 import { combineReducers } from 'redux';
-import { omit, keyBy } from 'lodash';
+import { omit, keyBy, pick } from 'lodash';
 import * as actions from '../actions';
 
 const defaultState = {};
@@ -50,14 +50,6 @@ const channels = handleActions(
         allIds: RemovedChannelIds,
         current: prevChannelId,
       };
-    },
-    [actions.addMessageIo](state, { payload: payloadedMessages }) {
-      const { channelId } = payloadedMessages;
-      const { byId } = state;
-      const channel = byId[channelId];
-      const channelChangeStatus = { ...channel, removable: false };
-      const channelsEntities = { ...state.byId, [channelId]: channelChangeStatus };
-      return { ...state, byId: channelsEntities };
     },
   },
   defaultChannelsState,
@@ -117,6 +109,21 @@ const messages = handleActions(
       const msgEntities = { ...state.byId, [localMsgId]: messageWithStatus };
 
       return { ...state, byId: msgEntities };
+    },
+    [actions.delChanelIo](state, { payload: payloadedChannelId }) {
+      const { byId, allIds } = state;
+      const RemoveMessagesIds = allIds.filter((id) => {
+        const { channelId } = byId[id];
+        const normChannelId = channelId.toString();
+        const normpayloadedChannelId = payloadedChannelId.toString();
+        return (!(normChannelId === normpayloadedChannelId));
+      });
+      const RemoveMessagesEntities = pick(byId, RemoveMessagesIds);
+      return {
+        ...state,
+        byId: RemoveMessagesEntities,
+        allIds: RemoveMessagesIds,
+      };
     },
   },
   defaultState,

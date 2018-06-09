@@ -40,6 +40,7 @@ socket.on('newMessage', ({ data: { attributes: message } }) => {
   store.dispatch(actionCreators.addMessageIo(message));
 });
 socket.on('renameChannel', ({ data: { attributes: channel } }) => {
+  console.log(channel);
   store.dispatch(actionCreators.editChanelIo(channel));
 });
 socket.on('removeChannel', ({ data: { id: channelId } }) => {
