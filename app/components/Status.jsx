@@ -1,6 +1,6 @@
 import React from 'react';
-import connect from '../connect';
 import cn from 'classnames';
+import connect from '../connect';
 
 const mapStateToProps = state => ({
   status: state.appstatus,
@@ -24,6 +24,6 @@ class Status extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default Status;
