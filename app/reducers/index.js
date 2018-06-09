@@ -43,13 +43,21 @@ const channels = handleActions(
       const { byId, allIds } = state;
       const RemovedChannel = omit(byId, payloadedChannelId);
       const RemovedChannelIds = allIds.filter(id => !(id === payloadedChannelId.toString()));
-      const prevChannelId = RemovedChannelIds[RemovedChannelIds.length - 1]
+      const prevChannelId = RemovedChannelIds[RemovedChannelIds.length - 1];
       return {
         ...state,
         byId: RemovedChannel,
         allIds: RemovedChannelIds,
         current: prevChannelId,
       };
+    },
+    [actions.addMessageIo](state, { payload: payloadedMessages }) {
+      const { channelId } = payloadedMessages;
+      const { byId } = state;
+      const channel = byId[channelId];
+      const channelChangeStatus = { ...channel, removable: false };
+      const channelsEntities = { ...state.byId, [channelId]: channelChangeStatus };
+      return { ...state, byId: channelsEntities };
     },
   },
   defaultChannelsState,
