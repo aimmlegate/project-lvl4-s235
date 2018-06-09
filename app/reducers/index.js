@@ -32,7 +32,16 @@ const channels = handleActions(
       };
     },
     [actions.setCurrentChanel](state, { payload: payloadedCurrentId }) {
-      return { ...state, current: payloadedCurrentId };
+      const { byId } = state;
+      const channelToUpdate = byId[payloadedCurrentId];
+      const updatedChannel = { ...channelToUpdate, status: 'seen' };
+      const channelsEntities = { ...byId, [payloadedCurrentId]: updatedChannel };
+
+      return {
+        ...state,
+        byId: channelsEntities,
+        current: payloadedCurrentId,
+      };
     },
     [actions.editChanelIo](state, { payload: payloadedChannel }) {
       const { id } = payloadedChannel;
@@ -45,11 +54,28 @@ const channels = handleActions(
       const RemovedChannel = omit(byId, payloadedChannelId);
       const RemovedChannelIds = allIds.filter(id => !(id === payloadedChannelId.toString()));
       const prevChannelId = RemovedChannelIds[RemovedChannelIds.length - 1];
+
       return {
         ...state,
         byId: RemovedChannel,
         allIds: RemovedChannelIds,
         current: prevChannelId,
+      };
+    },
+    [actions.addMessageIo](state, { payload: payloadedMessage }) {
+      const { byId, current } = state;
+      const { channelId } = payloadedMessage;
+      const normalizeCurrentId = current.toString();
+      const normalizeChanelId = channelId.toString();
+      if (normalizeCurrentId === normalizeChanelId) {
+        return { ...state };
+      }
+      const channelToUpdate = byId[channelId];
+      const updatedChannel = { ...channelToUpdate, status: 'new' };
+      const channelsEntities = { ...byId, [channelId]: updatedChannel };
+      return {
+        ...state,
+        byId: channelsEntities,
       };
     },
   },

@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { ListGroup, ListGroupItem, Badge } from 'reactstrap';
 import connect from '../connect';
 
 const mapStateToProps = state => ({ channels: state.channels });
@@ -9,6 +9,15 @@ const mapStateToProps = state => ({ channels: state.channels });
 export default class Channels extends React.Component {
   changeChannel = id => () => {
     this.props.setCurrentChanel(id);
+  };
+
+  renderNewBadge = (id) => {
+    const { byId, current } = this.props.channels;
+    const { status } = byId[id];
+    if ((status === 'new') && (!(current === id))) {
+      return <Badge color="secondary">New</Badge>;
+    }
+    return null;
   };
 
   render() {
@@ -22,7 +31,8 @@ export default class Channels extends React.Component {
               key={id}
               onClick={this.changeChannel(id)}
             >
-              {byId[id].name}
+              {byId[id].name} {'  '}
+              {this.renderNewBadge(id)}
             </ListGroupItem>
           ))}
         </ListGroup>
