@@ -42,6 +42,9 @@ socket.on('newMessage', ({ data: { attributes: message } }) => {
 socket.on('renameChannel', ({ data: { attributes: channel } }) => {
   store.dispatch(actionCreators.editChanelIo(channel));
 });
+socket.on('removeChannel', ({ data: { id: channelId } }) => {
+  store.dispatch(actionCreators.delChanelIo(channelId));
+});
 
 export default React.createContext();
 

@@ -2,19 +2,25 @@ import React from 'react';
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import ModalNewChannel from './ModalNewChannel';
 import ModalEditChannel from './ModalEditChannel';
+import ModalDelChannel from './ModalDelChannel';
 import connect from '../connect';
 
 const mapStateToProps = state => ({ channels: state.channels });
 
 @connect(mapStateToProps)
 export default class ChannelControls extends React.Component {
-  state = { modalCreate: false, modalEdit: false };
+  state = { modalCreate: false, modalEdit: false, modalDel: false };
 
   addNewChannel = name => this.props.addChannel(name);
 
   editChannel = (name) => {
     const { current } = this.props.channels;
     this.props.editChannel(name, current);
+  };
+
+  delChannel = () => {
+    const { current } = this.props.channels;
+    this.props.delChannel(current);
   };
 
   toggleNewChannel = () => {
@@ -28,6 +34,26 @@ export default class ChannelControls extends React.Component {
       modalEdit: !this.state.modalEdit,
     });
   };
+
+  toggleDelChannel = () => {
+    this.setState({
+      modalDel: !this.state.modalDel,
+    });
+  };
+
+  renderDelControl = () => {
+    const { current, byId } = this.props.channels;
+    const { removable } = byId[current];
+    if (removable) {
+      return (
+        <NavItem>
+          <NavLink href="#" onClick={this.toggleDelChannel}>
+            Delete channel
+          </NavLink>
+        </NavItem>
+      );
+    } return null;
+  }
 
   render() {
     const { current, byId } = this.props.channels;
@@ -47,9 +73,7 @@ export default class ChannelControls extends React.Component {
                 Edit channel
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="#">Delete channel</NavLink>
-            </NavItem>
+            {this.renderDelControl()}
           </Nav>
         </Navbar>
         <ModalNewChannel
@@ -61,6 +85,11 @@ export default class ChannelControls extends React.Component {
           isOpen={this.state.modalEdit}
           toggle={this.toggleEditChannel}
           create={this.editChannel}
+        />
+        <ModalDelChannel
+          isOpen={this.state.modalDel}
+          toggle={this.toggleDelChannel}
+          delete={this.delChannel}
         />
       </div>
     );

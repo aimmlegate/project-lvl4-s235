@@ -48,6 +48,9 @@ class ModalEditChannel extends React.Component {
               <Button color="primary" type="submit">
                 Save
               </Button>
+              <Button color="secondary" onClick={this.handleClose} type="submit">
+                Cancel
+              </Button>
             </ModalFooter>
           </Form>
         </Modal>

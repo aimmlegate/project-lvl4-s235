@@ -12,6 +12,7 @@ const channels = handleActions(
     [actions.addChanelAll](state, { payload: payloadedChannels }) {
       const channelsEntities = keyBy(payloadedChannels, 'id');
       const channelsIds = Object.keys(channelsEntities);
+
       return {
         ...state,
         byId: channelsEntities,
@@ -35,7 +36,20 @@ const channels = handleActions(
     [actions.editChanelIo](state, { payload: payloadedChannel }) {
       const { id } = payloadedChannel;
       const channelsEntities = { ...state.byId, [id]: payloadedChannel };
+
       return { ...state, byId: channelsEntities };
+    },
+    [actions.delChanelIo](state, { payload: payloadedChannelId }) {
+      const { byId, allIds } = state;
+      const RemovedChannel = omit(byId, payloadedChannelId);
+      const RemovedChannelIds = allIds.filter(id => !(id === payloadedChannelId.toString()));
+      const prevChannelId = RemovedChannelIds[RemovedChannelIds.length - 1]
+      return {
+        ...state,
+        byId: RemovedChannel,
+        allIds: RemovedChannelIds,
+        current: prevChannelId,
+      };
     },
   },
   defaultChannelsState,
@@ -93,6 +107,7 @@ const messages = handleActions(
       const message = state.byId[localMsgId];
       const messageWithStatus = { ...message, status: 'error' };
       const msgEntities = { ...state.byId, [localMsgId]: messageWithStatus };
+
       return { ...state, byId: msgEntities };
     },
   },

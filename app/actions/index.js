@@ -11,7 +11,12 @@ export const addChanelFailure = createAction('CHANEL_ADD_FAILURE');
 export const editChanelRequest = createAction('CHANEL_EDIT_REQUEST');
 export const editChanelSuccess = createAction('CHANEL_EDIT_SUCCESS');
 export const editChanelFailure = createAction('CHANEL_EDIT_FAILURE');
-export const editChanelIo = createAction('CHANEL_EDIT__IO');
+export const editChanelIo = createAction('CHANEL_EDIT_IO');
+
+export const delChanelRequest = createAction('CHANEL_DEL_REQUEST');
+export const delChanelSuccess = createAction('CHANEL_DEL_SUCCESS');
+export const delChanelFailure = createAction('CHANEL_DEL_FAILURE');
+export const delChanelIo = createAction('CHANEL_DEL_IO');
 
 export const setCurrentChanel = createAction('CHANEL_SET_CURRENT');
 
@@ -71,10 +76,26 @@ export const editChannel = (name, id) => async (dispatch) => {
       { data: { id, attributes } },
       { timeout: 5000 },
     );
-    dispatch(editChanelSuccess());
+    dispatch(delChanelSuccess());
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e);
     dispatch(editChanelFailure());
+  }
+};
+
+export const delChannel = id => async (dispatch) => {
+  dispatch(delChanelRequest());
+  try {
+    await axios.delete(
+      routes.editChannelUrl(id),
+      { data: { id } },
+      { timeout: 5000 },
+    );
+    dispatch(delChanelSuccess());
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e);
+    dispatch(delChanelFailure());
   }
 };
