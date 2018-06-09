@@ -53,7 +53,7 @@ const channels = handleActions(
       const { byId, allIds } = state;
       const RemovedChannel = omit(byId, payloadedChannelId);
       const RemovedChannelIds = allIds.filter(id => !(id === payloadedChannelId.toString()));
-      const prevChannelId = RemovedChannelIds[RemovedChannelIds.length - 1];
+      const prevChannelId = RemovedChannelIds[0];
 
       return {
         ...state,
