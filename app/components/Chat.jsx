@@ -48,9 +48,8 @@ export default class Chat extends React.Component {
             localId,
             channelId,
           } = messagesById[msgId];
-          let message;
           if (channelId.toString() === currentChannel.toString()) {
-            message = (
+            return (
               <Message
                 key={id || localId}
                 id={id || localId}
@@ -62,10 +61,8 @@ export default class Chat extends React.Component {
                 status={status}
               />
             );
-          } else {
-            message = null;
           }
-          return message;
+          return null;
         })}
       </div>
     );

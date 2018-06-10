@@ -52,7 +52,7 @@ const channels = handleActions(
     [actions.delChanelIo](state, { payload: payloadedChannelId }) {
       const { byId, allIds } = state;
       const RemovedChannel = omit(byId, payloadedChannelId);
-      const RemovedChannelIds = allIds.filter(id => !(id === payloadedChannelId.toString()));
+      const RemovedChannelIds = allIds.filter(id => (id !== payloadedChannelId.toString()));
       const prevChannelId = RemovedChannelIds[0];
 
       return {
@@ -159,7 +159,7 @@ const messages = handleActions(
     [actions.messageDel](state, { payload: localMsgId }) {
       const { byId, allIds } = state;
       const RemovedLocalMessage = omit(byId, localMsgId);
-      const RemovedLocalMessageId = allIds.filter(id => !(id === localMsgId));
+      const RemovedLocalMessageId = allIds.filter(id => (id !== localMsgId));
 
       return {
         ...state,
