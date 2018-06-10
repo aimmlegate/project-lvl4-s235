@@ -47,7 +47,7 @@ class ModalNewChannel extends React.Component {
               <Button color="primary" type="submit">
                 Create
               </Button>
-              <Button color="secondary" onClick={this.handleClose} type="submit">
+              <Button color="secondary" onClick={this.handleClose}>
                 Cancel
               </Button>
             </ModalFooter>

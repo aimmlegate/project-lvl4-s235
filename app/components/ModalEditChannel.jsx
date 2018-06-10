@@ -35,7 +35,7 @@ class ModalEditChannel extends React.Component {
             <ModalHeader toggle={this.handleClose}>Edit channel</ModalHeader>
             <ModalBody>
               <FormGroup>
-                <Label for="exampleEmail">New name</Label>
+                <Label for="exampleEmail">Change name</Label>
                 <Input
                   tag={Field}
                   type="text"
@@ -50,7 +50,7 @@ class ModalEditChannel extends React.Component {
               <Button color="primary" type="submit">
                 Save
               </Button>
-              <Button color="secondary" onClick={this.handleClose} type="submit">
+              <Button color="secondary" onClick={this.handleClose}>
                 Cancel
               </Button>
             </ModalFooter>
@@ -64,4 +64,5 @@ class ModalEditChannel extends React.Component {
 
 export default reduxForm({
   form: 'editChannel',
+  enableReinitialize: true,
 })(ModalEditChannel);

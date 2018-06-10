@@ -90,7 +90,7 @@ export default class ChannelControls extends React.Component {
         <ModalEditChannel
           isOpen={this.state.modalEdit}
           toggle={this.toggleEditChannel}
-          initialValue={{ channelName: name }}
+          initialValues={{ channelName: name }}
           create={this.editChannel}
         />
         <ModalDelChannel

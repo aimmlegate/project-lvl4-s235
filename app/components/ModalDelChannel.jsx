@@ -37,7 +37,7 @@ export default class ModalDelChannel extends React.Component {
               <Button color="primary" onClick={this.delChannel} type="submit">
                 Delete
               </Button>
-              <Button color="secondary" onClick={this.handleClose} type="submit">
+              <Button color="secondary" onClick={this.handleClose}>
                 Cancel
               </Button>
             </ModalFooter>
