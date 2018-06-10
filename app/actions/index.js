@@ -60,7 +60,7 @@ export const addChannel = name => async (dispatch) => {
     );
     dispatch(addChanelSuccess(responce));
   } catch (e) {
-    dispatch(addChanelFailure());
+    dispatch(addChanelFailure(e.message));
   }
 };
 
@@ -75,7 +75,7 @@ export const editChannel = (name, id) => async (dispatch) => {
     );
     dispatch(editChanelSuccess());
   } catch (e) {
-    dispatch(editChanelFailure());
+    dispatch(editChanelFailure(e.message));
   }
 };
 
@@ -89,6 +89,6 @@ export const delChannel = id => async (dispatch) => {
     );
     dispatch(delChanelSuccess());
   } catch (e) {
-    dispatch(delChanelFailure());
+    dispatch(delChanelFailure(e.message));
   }
 };
