@@ -7,6 +7,7 @@ export const addChanelAll = createAction('CHANEL_ADD_All');
 export const addChanelRequest = createAction('CHANEL_ADD_REQUEST');
 export const addChanelSuccess = createAction('CHANEL_ADD_SUCCESS');
 export const addChanelFailure = createAction('CHANEL_ADD_FAILURE');
+export const addChanelIo = createAction('CHANEL_ADD_IO');
 
 export const editChanelRequest = createAction('CHANEL_EDIT_REQUEST');
 export const editChanelSuccess = createAction('CHANEL_EDIT_SUCCESS');
@@ -53,12 +54,12 @@ export const addChannel = name => async (dispatch) => {
   const attributes = { name };
   dispatch(addChanelRequest());
   try {
-    const { data: { data: { attributes: responce } } } = await axios.post(
+    await axios.post(
       routes.addChannelUrl(),
       { data: { attributes } },
       { timeout: 5000 },
     );
-    dispatch(addChanelSuccess(responce));
+    dispatch(addChanelSuccess());
   } catch (e) {
     dispatch(addChanelFailure(e.message));
   }

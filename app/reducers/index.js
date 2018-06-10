@@ -20,7 +20,7 @@ const channels = handleActions(
         allIds: channelsIds,
       };
     },
-    [actions.addChanelSuccess](state, { payload: payloadedChannel }) {
+    [actions.addChanelIo](state, { payload: payloadedChannel }) {
       const { id } = payloadedChannel;
       const channelsEntities = { ...state.byId, [id]: payloadedChannel };
       const channelsIds = Object.keys(channelsEntities);
