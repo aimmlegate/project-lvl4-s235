@@ -26,6 +26,7 @@ export const addMessageIo = createAction('MESSAGE_ADD_IO');
 export const addMessageUpdate = createAction('MESSAGE_ADD_REQUEST');
 export const addMessageSuccess = createAction('MESSAGE_ADD_SUCCESS');
 export const addMessageFailure = createAction('MESSAGE_ADD_FAILURE');
+export const messageDel = createAction('MESSAGE_DEL');
 
 export const sendMessage = (channelId, { message }, userName, clientId) => async (dispatch) => {
   const attributes = {

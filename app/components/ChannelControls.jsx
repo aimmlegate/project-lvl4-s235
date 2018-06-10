@@ -55,6 +55,12 @@ export default class ChannelControls extends React.Component {
     } return null;
   }
 
+  getCurrentChannelName = () => {
+    const { current, byId } = this.props.channels;
+    const { name } = byId[current];
+    return name;
+  }
+
   render() {
     const { current, byId } = this.props.channels;
     const { name } = byId[current];
@@ -84,6 +90,7 @@ export default class ChannelControls extends React.Component {
         <ModalEditChannel
           isOpen={this.state.modalEdit}
           toggle={this.toggleEditChannel}
+          initialValue={{ channelName: name }}
           create={this.editChannel}
         />
         <ModalDelChannel

@@ -37,10 +37,10 @@ const store = createStore(
 setStartState(store, channels, messages);
 
 socket.on('newMessage', ({ data: { attributes: message } }) => {
-  store.dispatch(actionCreators.addMessageIo(message));
+  const payload = { message, localID: Cookies.get('aiml-chat-client-id') };
+  store.dispatch(actionCreators.addMessageIo(payload));
 });
 socket.on('renameChannel', ({ data: { attributes: channel } }) => {
-  console.log(channel);
   store.dispatch(actionCreators.editChanelIo(channel));
 });
 socket.on('removeChannel', ({ data: { id: channelId } }) => {

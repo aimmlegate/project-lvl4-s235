@@ -62,9 +62,10 @@ const channels = handleActions(
         current: prevChannelId,
       };
     },
-    [actions.addMessageIo](state, { payload: payloadedMessage }) {
+    [actions.addMessageIo](state, { payload }) {
       const { byId, current } = state;
-      const { channelId } = payloadedMessage;
+      const { message } = payload;
+      const { channelId } = message;
       const normalizeCurrentId = current.toString();
       const normalizeChanelId = channelId.toString();
       if (normalizeCurrentId === normalizeChanelId) {
@@ -94,10 +95,14 @@ const messages = handleActions(
         allIds: msgIds,
       };
     },
-    [actions.addMessageIo](state, { payload: payloadedMessage }) {
-      const { id } = payloadedMessage;
+    [actions.addMessageIo](state, { payload }) {
+      const { localID, message } = payload;
+      const { id, clientId } = message;
+      if (localID === clientId) {
+        return { ...state };
+      }
       const { byId, allIds } = state;
-      const msgEntities = { ...byId, [id]: payloadedMessage };
+      const msgEntities = { ...byId, [id]: message };
       const msgIds = [...allIds, id.toString()];
 
       return {
@@ -120,14 +125,13 @@ const messages = handleActions(
       };
     },
     [actions.addMessageSuccess](state, { payload: localMsgId }) {
-      const { byId, allIds } = state;
-      const RemovedLocalMessage = omit(byId, localMsgId);
-      const RemovedLocalMessageId = allIds.filter(id => !(id === localMsgId));
+      const { byId } = state;
+      const messageWithStatus = { ...byId[localMsgId], status: 'ok' };
+      const msgEntities = { ...byId, [localMsgId]: messageWithStatus };
 
       return {
         ...state,
-        byId: RemovedLocalMessage,
-        allIds: RemovedLocalMessageId,
+        byId: msgEntities,
       };
     },
     [actions.addMessageFailure](state, { payload: localMsgId }) {
@@ -150,6 +154,17 @@ const messages = handleActions(
         ...state,
         byId: RemoveMessagesEntities,
         allIds: RemoveMessagesIds,
+      };
+    },
+    [actions.messageDel](state, { payload: localMsgId }) {
+      const { byId, allIds } = state;
+      const RemovedLocalMessage = omit(byId, localMsgId);
+      const RemovedLocalMessageId = allIds.filter(id => !(id === localMsgId));
+
+      return {
+        ...state,
+        byId: RemovedLocalMessage,
+        allIds: RemovedLocalMessageId,
       };
     },
   },

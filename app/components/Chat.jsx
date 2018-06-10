@@ -53,8 +53,11 @@ export default class Chat extends React.Component {
             message = (
               <Message
                 key={id || localId}
+                id={id || localId}
+                channel={channelId}
                 author={author}
                 body={body}
+                clientId={clientId}
                 self={clientId === msgClientId}
                 status={status}
               />

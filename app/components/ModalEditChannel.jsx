@@ -29,7 +29,9 @@ class ModalEditChannel extends React.Component {
     return (
       <div>
         <Modal isOpen={this.props.isOpen}>
-          <Form onSubmit={this.props.handleSubmit(this.createChannel)}>
+          <Form
+            onSubmit={this.props.handleSubmit(this.createChannel)}
+          >
             <ModalHeader toggle={this.handleClose}>Edit channel</ModalHeader>
             <ModalBody>
               <FormGroup>
@@ -58,6 +60,7 @@ class ModalEditChannel extends React.Component {
     );
   }
 }
+
 
 export default reduxForm({
   form: 'editChannel',
