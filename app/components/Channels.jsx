@@ -14,7 +14,7 @@ export default class Channels extends React.Component {
   renderNewBadge = (id) => {
     const { byId, current } = this.props.channels;
     const { status } = byId[id];
-    if ((status === 'new') && (!(current === id))) {
+    if ((status === 'new') && (current !== id)) {
       return <Badge color="secondary">New</Badge>;
     }
     return null;

@@ -30,7 +30,7 @@ export default class ModalDelChannel extends React.Component {
             <ModalHeader toggle={this.handleClose}>Delete this channel</ModalHeader>
             <ModalBody>
               <FormGroup>
-                <Label for="exampleEmail">Are you shure?</Label>
+                <Label for="exampleEmail">Are you sure?</Label>
               </FormGroup>
             </ModalBody>
             <ModalFooter>

@@ -143,7 +143,7 @@ const messages = handleActions(
         const { channelId } = byId[id];
         const normChannelId = channelId.toString();
         const normpayloadedChannelId = payloadedChannelId.toString();
-        return (!(normChannelId === normpayloadedChannelId));
+        return (normChannelId !== normpayloadedChannelId);
       });
       const RemoveMessagesEntities = pick(byId, RemoveMessagesIds);
       return {
